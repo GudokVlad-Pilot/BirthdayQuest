@@ -7,7 +7,7 @@ const UsersPage: React.FC = () => {
     const [usersData, setUsersData] = useState<UsersData>({});
   
     useEffect(() => {
-           fetch("https://birthdayquestbackend.onrender.com/users")
+           fetch("/users")
              .then(response => response.json())
              .then(data => {
                setUsersData(data);

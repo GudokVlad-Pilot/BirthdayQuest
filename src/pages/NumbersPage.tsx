@@ -8,7 +8,7 @@ const NumbersPage: React.FC = () => {
   const [numbersData, setNumbersData] = useState<NumbersData>({});
 
   useEffect(() => {
-         fetch("https://birthdayquestbackend.onrender.com/numbers")
+         fetch("/numbers")
            .then(response => response.json())
            .then(data => {
              setNumbersData(data);
