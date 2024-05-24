@@ -25,7 +25,7 @@ const ChestPage: React.FC = () => {
   return (
     <div className="chestsPage">
       <div className="pageTitle">
-        This is the chests page.
+        This is the chest page.
       </div>
       <div className="text">
         Some text here
