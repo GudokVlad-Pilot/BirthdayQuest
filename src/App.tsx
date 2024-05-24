@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
 import NumbersPage from './pages/NumbersPage';
 import UsersPage from './pages/UsersPage';
+import ChestPage from './pages/ChestPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='/' element={<LandingPage />} />
         <Route path='/numbers' element={<NumbersPage />} />
         <Route path='/users' element={<UsersPage />} />
+        <Route path='/chest' element={<ChestPage />} />
       </Routes>
     </div>
   );

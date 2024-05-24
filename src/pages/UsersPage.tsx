@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 interface User {
   name: string;
@@ -32,7 +34,10 @@ const UsersPage: React.FC = () => {
       </div>
       <div>
         {users.length === 0 ? (
-          <p>Loading...</p>
+          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+            <CircularProgress />
+            <p> Loading...</p>
+          </Box>
         ) : (
           users.map((user, index) => (
             <div key={index} className="user">

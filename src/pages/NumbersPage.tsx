@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { io } from "socket.io-client";
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const TIMER_DURATION = 90000; // 1.5 minutes
 
@@ -59,7 +61,9 @@ const NumbersPage: React.FC = () => {
       </div>
       <div>
         {currentNumber === null ? (
-          <p>Loading...</p>
+          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+            <CircularProgress />
+          </Box>
         ) : (
           <div>
             <p>Current number: {currentNumber}</p>
