@@ -1,3 +1,5 @@
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
 
 const LandingPage = () => {
@@ -12,6 +14,13 @@ const LandingPage = () => {
         <div className="Text">
             Some text here
         </div>
+          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+            <CircularProgress />
+            <p> Loading...</p>
+          </Box>
+          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
+            <CircularProgress />
+          </Box>
     </div>
     );
   };
