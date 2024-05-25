@@ -14,6 +14,10 @@ const ChestPage: React.FC = () => {
     setCurrentIndex(currentIndex+1);
   };
 
+  const handleReset = () => {
+    setCurrentIndex(0);
+  };
+
   useEffect(() => {
     const fetchChampions = async () => {
       try {
@@ -60,6 +64,7 @@ const ChestPage: React.FC = () => {
       {champions.length > 0 && (
         <button onClick={handleNext}>Далее</button>
       )}
+      <button onClick={handleReset}>Reset</button>
     </div>
   );
 };
