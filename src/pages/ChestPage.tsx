@@ -17,13 +17,20 @@ const ChestPage: React.FC = () => {
   const [champions, setChampions] = useState<Champion[]>([]);
   const [championsLol, setChampionsLol] = useState<ChampionLol[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [selectedChampion, setSelectedChampion] = useState<string | null>(null);
 
   const handleNext = () => {
-    setCurrentIndex(currentIndex+1);
+    if (selectedChampion === champions[currentIndex].name) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+      setSelectedChampion(null);
+    } else {
+      console.log('Выбранный чемпион не соответствует целевому чемпиону, действие не выполнено.');
+    }
   };
 
   const handleReset = () => {
     setCurrentIndex(0);
+    setSelectedChampion(null);
   };
 
   useEffect(() => {
@@ -52,13 +59,7 @@ const ChestPage: React.FC = () => {
     fetchChampionsLol();
   }, []);
 
-  const options = championsLol.map((championLol) => {
-    const firstLetter = championLol.name[0].toUpperCase();
-    return {
-      firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
-      ...championLol,
-    };
-  });
+  const options = championsLol.map((championLol) => championLol.name).sort();
 
   return (
     <div className="chestsPage">
@@ -69,35 +70,39 @@ const ChestPage: React.FC = () => {
         Some text here
       </div>
       <div>
-        {champions.length === 0  && championsLol.length === 0 ? (
+        {champions.length === 0 && championsLol.length === 0 ? (
           <p>Loading...</p>
         ) : (
           currentIndex < champions.length ? (
-          <div className="champion">
-            <img 
-              src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
-              alt={`${champions[currentIndex].name}'s chest`} 
-              style={{ height: '200px' }} 
-            />
-            <p>{champions[currentIndex].name}</p>
-            <Autocomplete
-              id="championsLolSearch"
-              options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-              groupBy={(option) => option.firstLetter}
-              getOptionLabel={(option) => option.name}
-              // sx={{ width: 300 }}
-              renderInput={(params) => <TextField {...params} label="Чемпион" />}
-            />
-          </div>) : 
-          championsLol.length === 0 ? (
+            <div className="champion">
+              <img 
+                src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
+                alt={`${champions[currentIndex].name}'s chest`} 
+                style={{ height: '200px' }} 
+              />
+              <p>{champions[currentIndex].name}</p>
+              <Autocomplete
+                id="championsLolSearch"
+                options={options}
+                groupBy={(option) => option[0].toUpperCase()}
+                freeSolo // Позволяет пользователю вводить свои значения
+                sx={{ width: 300, display: "inline-flex" }}
+                renderInput={(params) => <TextField {...params} label="Чемпион" />}
+                value={selectedChampion || ''}
+                onChange={(event, value) => {
+                  setSelectedChampion(value || null);
+                }}
+              />
+            </div>
+          ) : championsLol.length === 0 ? (
             <p>Loading...</p>
-          ) :
-          // <p>Done</p>
-          championsLol.map((championLol, index) => (
-            <div key={index} className="championLol">
-            <p>{championLol.name}</p>
-          </div>
-          ))
+          ) : (
+            championsLol.map((championLol, index) => (
+              <div key={index} className="championLol">
+                <p>{championLol.name}</p>
+              </div>
+            ))
+          )
         )}
       </div>
       {champions.length > 0 && (
