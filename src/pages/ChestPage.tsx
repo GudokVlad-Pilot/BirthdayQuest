@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { red } from "@mui/material/colors";
 
 interface Champion {
   name: string;
@@ -19,19 +20,26 @@ const ChestPage: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedChampion, setSelectedChampion] = useState<string | null>(null);
   const [guessedChampion, setGuessedChampion] = useState<string[]>([])
+  const [isGuessed, setIsGuest] = useState<boolean>(false)
 
-  const handleNext = () => {
+  const handleGuess = () => {
     console.log(selectedChampion)
-    if (selectedChampion !== null) {
+    if (selectedChampion === champions[currentIndex].name) {
+      setIsGuest(true)
+    }
+    else if (selectedChampion !== null) {
       setGuessedChampion([...guessedChampion, selectedChampion]);
     }
-    if (selectedChampion === champions[currentIndex].name) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-      setSelectedChampion(null);
-      setGuessedChampion([])
-    } else {
+    else {
       console.log('Выбранный чемпион не соответствует целевому чемпиону, действие не выполнено.');
     }
+  };
+
+  const handleNext = () => {
+    setSelectedChampion(null);
+    setGuessedChampion([])
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setIsGuest(false)
   };
 
   const handleReset = () => {
@@ -94,6 +102,7 @@ const ChestPage: React.FC = () => {
                 freeSolo
                 sx={{ width: 300, display: "inline-flex" }}
                 renderInput={(params) => <TextField {...params} label="Чемпион" />}
+                disabled={isGuessed}
                 value={selectedChampion || ''}
                 onChange={(event, value) => {
                   setSelectedChampion(value || null);
@@ -112,12 +121,16 @@ const ChestPage: React.FC = () => {
         )}
       </div>
       {champions.length > 0 && (
-        <button onClick={handleNext}>Далее</button>
+        <button onClick={handleGuess}>Угадать</button>
       )}
       <button onClick={handleReset}>Reset</button>
+      {isGuessed && (
+        <button onClick={handleNext}>Далее</button>
+      )}
       <ul>
+        {isGuessed && <li style={{backgroundColor: "green"}}>{champions[currentIndex].name}</li>}
         {guessedChampion.map((champion, index) => (
-          <li key={index}>{champion}</li>
+          <li key={index} style={{backgroundColor: "red"}}>{champion}</li>
         ))}
       </ul>
     </div>
