@@ -73,7 +73,7 @@ const ChestPage: React.FC = () => {
         This is the chest page.
       </div>
       <div className="text">
-        Some text here
+        Угадай чемпиона по груди
       </div>
       <div>
         {champions.length === 0 && championsLol.length === 0 ? (
@@ -86,7 +86,7 @@ const ChestPage: React.FC = () => {
                 alt={`${champions[currentIndex].name}'s chest`} 
                 style={{ height: '200px' }} 
               />
-              <p>{champions[currentIndex].name}</p>
+              <p>Введите ваш ответ</p>
               <Autocomplete
                 id="championsLolSearch"
                 options={options}
