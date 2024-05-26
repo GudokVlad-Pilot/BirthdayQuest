@@ -18,11 +18,17 @@ const ChestPage: React.FC = () => {
   const [championsLol, setChampionsLol] = useState<ChampionLol[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedChampion, setSelectedChampion] = useState<string | null>(null);
+  const [guessedChampion, setGuessedChampion] = useState<string[]>([])
 
   const handleNext = () => {
+    console.log(selectedChampion)
+    if (selectedChampion !== null) {
+      setGuessedChampion([...guessedChampion, selectedChampion]);
+    }
     if (selectedChampion === champions[currentIndex].name) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
       setSelectedChampion(null);
+      setGuessedChampion([])
     } else {
       console.log('Выбранный чемпион не соответствует целевому чемпиону, действие не выполнено.');
     }
@@ -85,7 +91,7 @@ const ChestPage: React.FC = () => {
                 id="championsLolSearch"
                 options={options}
                 groupBy={(option) => option[0].toUpperCase()}
-                freeSolo // Позволяет пользователю вводить свои значения
+                freeSolo
                 sx={{ width: 300, display: "inline-flex" }}
                 renderInput={(params) => <TextField {...params} label="Чемпион" />}
                 value={selectedChampion || ''}
@@ -109,6 +115,11 @@ const ChestPage: React.FC = () => {
         <button onClick={handleNext}>Далее</button>
       )}
       <button onClick={handleReset}>Reset</button>
+      <ul>
+        {guessedChampion.map((champion, index) => (
+          <li key={index}>{champion}</li>
+        ))}
+      </ul>
     </div>
   );
 };
