@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage';
 import NumbersPage from './pages/NumbersPage';
 import UsersPage from './pages/UsersPage';
 import ChestPage from './pages/ChestPage';
+import FriendsPage from './pages/FriendsPage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/numbers' element={<NumbersPage />} />
+        <Route path='/friends' element={<FriendsPage />} />
         <Route path='/users' element={<UsersPage />} />
         <Route path='/chest' element={<ChestPage />} />
       </Routes>

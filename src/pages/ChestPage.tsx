@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { Link } from "react-router-dom";
 
 interface Champion {
   name: string;
@@ -41,10 +42,10 @@ const ChestPage: React.FC = () => {
     setIsGuest(false)
   };
 
-  const handleReset = () => {
-    setCurrentIndex(0);
-    setSelectedChampion(null);
-  };
+  // const handleReset = () => {
+  //   setCurrentIndex(0);
+  //   setSelectedChampion(null);
+  // };
 
   useEffect(() => {
     const fetchChampions = async () => {
@@ -111,18 +112,19 @@ const ChestPage: React.FC = () => {
           ) : championsLol.length === 0 ? (
             <p>Loading...</p>
           ) : (
-            championsLol.map((championLol, index) => (
-              <div key={index} className="championLol">
-                <p>{championLol.name}</p>
-              </div>
-            ))
+            <div className="nextLevelButton"><Link className="link" to="/friends">Friends</Link></div>
+            // championsLol.map((championLol, index) => (
+            //   <div key={index} className="championLol">
+            //     <p>{championLol.name}</p>
+            //   </div>
+            // ))
           )
         )}
       </div>
-      {champions.length > 0 && (
+      {champions.length > 0 && (currentIndex < champions.length) &&(
         <button onClick={handleGuess}>Угадать</button>
       )}
-      <button onClick={handleReset}>Reset</button>
+      {/* <button onClick={handleReset}>Reset</button> */}
       {isGuessed && (
         <button onClick={handleNext}>Далее</button>
       )}
