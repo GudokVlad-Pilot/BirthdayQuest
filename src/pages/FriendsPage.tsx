@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { io } from "socket.io-client";
-import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
