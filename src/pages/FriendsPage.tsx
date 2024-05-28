@@ -16,9 +16,10 @@ interface Friend {
 
 const FriendsPage: React.FC = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
-  const [isGuessed, setIsGuest] = useState<boolean>(false)
+  const [isGuessed, setIsGuessed] = useState<boolean>(false)
   const [selectedFriend, setSelectedFriend] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [guessedFriend, setGuessedFriend] = useState<string[]>([])
 
   useEffect(() => {
     const fetchFriends = async () => {
@@ -32,6 +33,26 @@ const FriendsPage: React.FC = () => {
 
     fetchFriends();
   }, []);
+
+  const handleGuess = () => {
+    console.log(selectedFriend)
+    if (selectedFriend === friends[currentIndex].name) {
+      setIsGuessed(true)
+    }
+    else if (selectedFriend !== null) {
+      setGuessedFriend([...guessedFriend, selectedFriend]);
+    }
+    else {
+      console.log('Выбранный друг не соответствует целевому другу, действие не выполнено.');
+    }
+  };
+
+  const handleNext = () => {
+    setSelectedFriend(null);
+    setGuessedFriend([])
+    setCurrentIndex((prevIndex) => prevIndex + 1);
+    setIsGuessed(false)
+  };
 
   const options = friends.map((friend) => friend.name).sort();
 
@@ -75,6 +96,18 @@ const FriendsPage: React.FC = () => {
             <div className="nextLevelButton"><Link className="link" to="/award">Award</Link></div>
           )
         )}
+        {friends.length > 0 && (currentIndex < friends.length) &&(
+                <button onClick={handleGuess}>Угадать</button>
+              )}
+              {isGuessed && (
+                <button onClick={handleNext}>Далее</button>
+              )}
+              <ul>
+                {isGuessed && <li style={{backgroundColor: "green"}}>{friends[currentIndex].name}</li>}
+                {guessedFriend.map((friend, index) => (
+                  <li key={index} style={{backgroundColor: "red"}}>{friend}</li>
+                ))}
+              </ul>
       </div>
     </div>
   );

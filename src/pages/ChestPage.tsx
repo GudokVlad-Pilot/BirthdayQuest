@@ -20,12 +20,12 @@ const ChestPage: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedChampion, setSelectedChampion] = useState<string | null>(null);
   const [guessedChampion, setGuessedChampion] = useState<string[]>([])
-  const [isGuessed, setIsGuest] = useState<boolean>(false)
+  const [isGuessed, setIsGuessed] = useState<boolean>(false)
 
   const handleGuess = () => {
     console.log(selectedChampion)
     if (selectedChampion === champions[currentIndex].name) {
-      setIsGuest(true)
+      setIsGuessed(true)
     }
     else if (selectedChampion !== null) {
       setGuessedChampion([...guessedChampion, selectedChampion]);
@@ -39,7 +39,7 @@ const ChestPage: React.FC = () => {
     setSelectedChampion(null);
     setGuessedChampion([])
     setCurrentIndex((prevIndex) => prevIndex + 1);
-    setIsGuest(false)
+    setIsGuessed(false)
   };
 
   // const handleReset = () => {
