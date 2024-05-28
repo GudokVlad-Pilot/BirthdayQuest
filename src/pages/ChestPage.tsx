@@ -91,7 +91,7 @@ const ChestPage: React.FC = () => {
             <div className="champion">
               <img 
                 src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
-                alt={`${champions[currentIndex].name}'s chest`} 
+                alt={`Самый умный?`} 
                 style={{ height: '200px' }} 
               />
               <p>Введите ваш ответ</p>
