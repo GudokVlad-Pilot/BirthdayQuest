@@ -6,6 +6,7 @@ import NumbersPage from './pages/NumbersPage';
 import UsersPage from './pages/UsersPage';
 import ChestPage from './pages/ChestPage';
 import FriendsPage from './pages/FriendsPage';
+import AwardPage from './pages/AwardPage';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/friends' element={<FriendsPage />} />
         <Route path='/users' element={<UsersPage />} />
         <Route path='/chest' element={<ChestPage />} />
+        <Route path='/award' element={<AwardPage />} />
       </Routes>
     </div>
   );
