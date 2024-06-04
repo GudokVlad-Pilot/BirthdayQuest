@@ -1,37 +1,48 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { jsPDF } from "jspdf";
+import html2canvas from "html2canvas";
 
 const AwardPage: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  const downloadPDF = () => {
-    const pdf = new jsPDF();
+  const downloadPDF = async () => {
     const pdfElement = document.getElementById("pdfElement");
 
-    // Проверяем, есть ли элемент с идентификатором "pdfElement"
     if (pdfElement) {
-      pdf.text("Award Page", 10, 10); // Добавляем заголовок в PDF
-
-      // Получаем размеры и содержимое элемента "pdfElement"
-    //   const { width, height } = pdfElement.getBoundingClientRect();
-      const htmlContent = pdfElement.innerHTML;
-
-      // Добавляем содержимое элемента в PDF
-      pdf.html(htmlContent, {
-        callback: () => {
-          // Сохраняем PDF файл с именем "award.pdf"
-          pdf.save("award.pdf");
-        },
+      // Увеличиваем масштаб, чтобы учесть границу и паддинг
+      const scale = 3;
+      const canvas = await html2canvas(pdfElement, { scale });
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: [297, 210], // A4 size in mm
       });
+
+      const imgWidth = 210; // ширина листа А4
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
+      pdf.save("award.pdf");
     }
   };
 
   return (
     <div className="landingPage">
       <div className="pageTitle">This is the award page.</div>
-      <div className="pdfBox" id="pdfElement">
+      <div
+        className="pdfBox"
+        id="pdfElement"
+        style={{
+          width: "190mm", // ширина A4 минус паддинг и граница
+          height: "269mm", // высота A4 минус паддинг и граница
+          border: "5mm solid black",
+          padding: "10mm",
+          boxSizing: "border-box",
+        }}
+      >
         Some text here
       </div>
       <button onClick={downloadPDF}>Download PDF</button>

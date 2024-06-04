@@ -74,6 +74,32 @@ const FriendsPage: React.FC = () => {
     }
   };
 
+  const getCellStyle = (isExactMatch: boolean, isEarlier: boolean | null) => {
+    if (isExactMatch) {
+      return { backgroundColor: "green" };
+    } else if (isEarlier === true) {
+      return { backgroundImage: "url('/pictures/chestAhri.jpg')" };
+    } else if (isEarlier === false) {
+      return { backgroundImage: "url('/pictures/chestKaisa.jpg" };
+    } else {
+      return {};
+    }
+  };
+
+  const getMeetingStyle = (friend: Friend) => {
+    const targetMeeting = currentFriends[currentIndex].meeting;
+    const isExactMatch = friend.meeting === targetMeeting;
+    const isEarlier = friend.meeting < targetMeeting ? true : friend.meeting > targetMeeting ? false : null;
+    return getCellStyle(isExactMatch, isEarlier);
+  };
+
+  const getBirthdayStyle = (friend: Friend) => {
+    const targetBirthday = currentFriends[currentIndex].birthday;
+    const isExactMatch = friend.birthday === targetBirthday;
+    const isEarlier = friend.birthday < targetBirthday ? true : friend.birthday > targetBirthday ? false : null;
+    return getCellStyle(isExactMatch, isEarlier);
+  };
+
   return (
     <div className="numbersPage">
       <div className="pageTitle">
@@ -133,10 +159,10 @@ const FriendsPage: React.FC = () => {
               {guessedFriends.map((friend, index) => (
                 <tr key={index}>
                   <td>{friend.name}</td>
-                  <td style={{ backgroundColor: friend.meeting === currentFriends[currentIndex].meeting ? "green" : "red" }}>{friend.meeting}</td>
+                  <td style={getMeetingStyle(friend)}>{friend.meeting}</td>
                   <td style={{ backgroundColor: getHairColor(friend) }}>{friend.hair.join(", ")}</td>
                   <td style={{ backgroundColor: friend.city === currentFriends[currentIndex].city ? "green" : "red" }}>{friend.city}</td>
-                  <td style={{ backgroundColor: friend.birthday === currentFriends[currentIndex].birthday ? "green" : "red" }}>{friend.birthday}</td>
+                  <td style={getBirthdayStyle(friend)}>{friend.birthday}</td>
                   <td style={{ backgroundColor: friend.game === currentFriends[currentIndex].game ? "green" : "red" }}>{friend.game}</td>
                   <td style={{ backgroundColor: friend.formula === currentFriends[currentIndex].formula ? "green" : "red" }}>{friend.formula}</td>
                 </tr>
