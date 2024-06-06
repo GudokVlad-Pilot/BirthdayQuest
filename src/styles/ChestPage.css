@@ -1,0 +1,23 @@
+.chestsPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.taskText {
+    text-align: center;
+    color: white;
+  }
+  
+.contentBox {
+    margin-top: 75px;
+    background-color: #ABA9C3;
+    width: 35%;
+    
+}
+
+.guessTextBox {
+    background-color: white;
+}

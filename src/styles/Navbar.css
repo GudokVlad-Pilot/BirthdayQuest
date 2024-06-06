@@ -1,0 +1,29 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.pages {
+    margin-top: 50px;
+    background-color: #ABA9C3;
+    width: 600px;
+    height: 90px;
+    display: flex;
+    /* justify-content: space-around; */
+}
+
+.navButton {
+    width: 155px;
+    display: flex;
+    justify-content: center;
+}
+
+.navButton.active {
+    background-color: #F9F1D2;
+    width: 290px;
+    box-shadow: 0 0 20px 5px rgba(255, 223, 0, 0.7); 
+}
+
+.iconLink {
+    height: 100%;
+}

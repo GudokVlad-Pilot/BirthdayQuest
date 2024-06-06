@@ -3,6 +3,7 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Link } from "react-router-dom";
+import "../styles/ChestPage.css"
 
 interface Champion {
   name: string;
@@ -77,50 +78,53 @@ const ChestPage: React.FC = () => {
 
   return (
     <div className="chestsPage">
-      <div className="pageTitle">
+      {/* <div className="pageTitle">
         This is the chest page.
-      </div>
-      <div className="text">
-        Угадай чемпиона по груди
-      </div>
-      <div>
-        {champions.length === 0 && championsLol.length === 0 ? (
-          <p>Loading...</p>
-        ) : (
-          currentIndex < champions.length ? (
-            <div className="champion">
-              <img 
-                src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
-                alt={`Самый умный?`} 
-                style={{ height: '200px' }} 
-              />
-              <p>Введите ваш ответ</p>
-              <Autocomplete
-                id="championsLolSearch"
-                options={options}
-                groupBy={(option) => option[0].toUpperCase()}
-                freeSolo
-                sx={{ width: 300, display: "inline-flex" }}
-                renderInput={(params) => <TextField {...params} label="Чемпион" />}
-                disabled={isGuessed}
-                value={selectedChampion || ''}
-                onChange={(event, value) => {
-                  setSelectedChampion(value || null);
-                }}
-              />
-            </div>
-          ) : championsLol.length === 0 ? (
+      </div> */}
+      <div className="contentBox">
+        <div className="taskText">
+          Угадай чемпиона по груди
+        </div>
+        <div>
+          {champions.length === 0 && championsLol.length === 0 ? (
             <p>Loading...</p>
           ) : (
-            <div className="nextLevelButton"><Link className="link" to="/friends">Friends</Link></div>
-            // championsLol.map((championLol, index) => (
-            //   <div key={index} className="championLol">
-            //     <p>{championLol.name}</p>
-            //   </div>
-            // ))
-          )
-        )}
+            currentIndex < champions.length ? (
+              <div className="champion">
+                <img 
+                  src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
+                  alt={`Самый умный?`} 
+                  style={{ height: '200px' }} 
+                />
+              </div>
+            ) : championsLol.length === 0 ? (
+              <p>Loading...</p>
+            ) : (
+              <div className="nextLevelButton"><Link className="link" to="/friends">Friends</Link></div>
+              // championsLol.map((championLol, index) => (
+              //   <div key={index} className="championLol">
+              //     <p>{championLol.name}</p>
+              //   </div>
+              // ))
+            )
+          )}
+        </div>
       </div>
+      {/* <p>Введите ваш ответ</p> */}
+      <Autocomplete
+        className="guessTextBox"
+        id="championsLolSearch"
+        options={options}
+        groupBy={(option) => option[0].toUpperCase()}
+        freeSolo
+        sx={{ width: 300, display: "inline-flex" }}
+        renderInput={(params) => <TextField {...params} label="Чемпион" />}
+        disabled={isGuessed}
+        value={selectedChampion || ''}
+        onChange={(event, value) => {
+          setSelectedChampion(value || null);
+        }}
+        />
       {champions.length > 0 && (currentIndex < champions.length) &&(
         <button onClick={handleGuess}>Угадать</button>
       )}

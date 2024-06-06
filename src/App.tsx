@@ -13,7 +13,8 @@ function App() {
     <div className="App" style={{
         // backgroundImage: `url(${Background})` 
       }}>
-       <Navbar />
+      <img className='logoName' src='/pictures/logo_name.png' alt='logo_name'/>
+      <Navbar />
       <Routes>
         <Route path='/' element={<LandingPage />} />
         <Route path='/numbers' element={<NumbersPage />} />
