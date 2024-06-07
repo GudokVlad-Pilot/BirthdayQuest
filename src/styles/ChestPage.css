@@ -20,7 +20,7 @@
     text-align: center;
     color: black;
     font-family: "Poiret One", monospace;
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 400;
     padding: 20px 0 0 0;
     line-height: 1.5;
@@ -39,20 +39,36 @@
 
 .guessBox {
     width: 600px;
+    display: flex;
 }
 
 .guessTextBox {
     margin-top: 75px;
     width: 480px !important;
     background-color: white;
+    border-color: transparent !important;
+    z-index: 1;
+}
+
+.guessButtonBox {
+    margin-top: 75px;
 }
 
 .guessButton {
     width: 120px;
     height: 100%;
+    border-radius: 0 60px 60px 0 ;
+    border-color: transparent;
+    cursor: pointer;
+    background-color: rgb(210, 210, 210);
+    box-shadow: 0 0 20px 5px rgba(160, 160, 160, 0.7); 
 }
 
 .autocomplete-no-border .MuiOutlinedInput-root {
+    border-width: 0;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
     border-color: transparent;
 }
 
@@ -66,7 +82,7 @@
 
 .chestLoader {
     text-align: center;
-    color: white;
+    color: black;
     font-family: "Poiret One", monospace;
     font-size: 42px;
     font-weight: bold;
@@ -82,4 +98,127 @@
     font-weight: 400;
     padding: 20px;
     line-height: 1.5;
+}
+
+.guessTextField {
+    border-color: transparent;
+}
+
+.guessTextField .MuiInputBase-input::placeholder {
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.guessTextField .MuiInputBase-input {
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* .incorrectGuess {
+    display: flex;
+    list-style-type: none;
+    width: 555px;
+    margin-top: 20px;
+    margin-left: -40px;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0 30px 0 15px;
+    border-radius: 0 60px 60px 0 ;
+    box-shadow: 0 0 20px 5px rgba(216, 125, 125, 0.7); 
+}
+
+.correctGuess {
+    display: flex;
+    list-style-type: none;
+    width: 555px;
+    margin-top: 20px;
+    margin-left: -40px;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0 30px 0 15px;
+    border-radius: 0 60px 60px 0 ;
+    box-shadow: 0 0 20px 5px rgba(211, 239, 171, 0.7); 
+} */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px); /* Для легкого перемещения вверх при появлении */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.incorrectGuess, .correctGuess {
+    display: flex;
+    list-style-type: none;
+    width: 555px;
+    margin-top: 20px;
+    margin-left: -40px;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 0 30px 0 15px; /*40px is recomended*/
+    border-radius: 0 60px 60px 0 ;
+    box-shadow: 0 0 20px 5px rgba(216, 125, 125, 0.7); 
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.correctGuess {
+    box-shadow: 0 0 20px 5px rgba(211, 239, 171, 0.7); 
+}
+
+.incorrectPool {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 0;
+}
+
+.nextButtonBox {
+    display: flex;
+    width: 600px;
+    margin-top: 75px;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: "#EAD181";
+    border-radius: 0 60px 60px 0 ;
+    box-shadow: 0 0 20px 5px rgba(255, 223, 0, 0.7);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.nextButton {
+    width: 100%;
+    height: 60px;
+    border-radius: 0 60px 60px 0 ;
+    border-color: transparent;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #F9F1D2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 15px;
 }

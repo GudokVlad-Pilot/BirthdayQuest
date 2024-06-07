@@ -5,6 +5,9 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
+import ForwardIcon from '@mui/icons-material/Forward';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
 import "../styles/ChestPage.css"
 
 interface Champion {
@@ -106,7 +109,7 @@ const ChestPage: React.FC = () => {
                 </div>
               </div>
             ) : championsLol.length === 0 ? (
-              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
               <CircularProgress />
               <p className="chestLoader">Loading...</p>
             </Box>
@@ -122,7 +125,7 @@ const ChestPage: React.FC = () => {
         </div>
       </div>
       {champions.length > 0 && (currentIndex < champions.length) &&(
-      <div className="guessBox">
+      !isGuessed && <div className="guessBox">
         <Autocomplete
           className="guessTextBox autocomplete-no-border"
           id="championsLolSearch"
@@ -130,25 +133,51 @@ const ChestPage: React.FC = () => {
           groupBy={(option) => option[0].toUpperCase()}
           freeSolo
           sx={{ width: 300, display: "inline-flex" }}
-          renderInput={(params) => <TextField {...params} /*label="Чемпион"*/ />}
+          renderInput={(params) => <TextField className="guessTextField" {...params} placeholder="Чемпион" 
+          InputProps={{
+            ...params.InputProps,
+            style: {
+              color: "black",
+              fontFamily: '"Poiret One", monospace',
+              fontSize: 25,
+              fontWeight: "bold",
+            },
+          }}/>}
           disabled={isGuessed}
           value={selectedChampion || ''}
           onChange={(event, value) => {
           setSelectedChampion(value || null);
           } } />
-        <button className="guessButton" onClick={handleGuess}>Угадать</button>
+        <div className="guessButtonBox">
+          <button className="guessButton" onClick={handleGuess}><ForwardIcon style={{height:"60px", width: "60px"}}/></button>
+        </div>
       </div>
       )}
       {/* <button onClick={handleReset}>Reset</button> */}
       {isGuessed && (
-        <button onClick={handleNext}>Далее</button>
+        <div className="nextButtonBox">
+          <button className="nextButton" onClick={handleNext}>
+          Следующая
+          <ForwardIcon style={{height:"60px", width: "60px"}}/>
+          </button>
+        </div>
       )}
-      <ul>
-        {isGuessed && <li style={{backgroundColor: "green"}}>{champions[currentIndex].name}</li>}
-        {guessedChampion.map((champion, index) => (
-          <li key={index} style={{backgroundColor: "red"}}>{champion}</li>
-        ))}
-      </ul>
+      <div>
+        <ul className="incorrectPool" style={{marginTop: "25px"}}>
+      {isGuessed && <li className="correctGuess" style={{backgroundColor: "#D3EFAB"}}>
+            {champions[currentIndex].name}
+            <CheckIcon style={{height:"60px", width: "60px"}}/>
+            </li>}
+            </ul>
+        <ul className="incorrectPool" style={{marginBottom: "25px"}}>
+          {guessedChampion.map((champion, index) => (
+            <li key={index} className="incorrectGuess" style={{backgroundColor: "#E27D7D"}}>
+              {champion}
+              <CloseIcon style={{height:"60px", width: "60px"}}/>
+              </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
