@@ -3,6 +3,12 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { Link } from "react-router-dom";
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import ForwardIcon from '@mui/icons-material/Forward';
+import CloseIcon from '@mui/icons-material/Close';
+import CheckIcon from '@mui/icons-material/Check';
+import "../styles/ChestPage.css"
 
 interface Champion {
   name: string;
@@ -77,63 +83,101 @@ const ChestPage: React.FC = () => {
 
   return (
     <div className="chestsPage">
-      <div className="pageTitle">
+      {/* <div className="pageTitle">
         This is the chest page.
-      </div>
-      <div className="text">
-        Угадай чемпиона по груди
-      </div>
-      <div>
-        {champions.length === 0 && championsLol.length === 0 ? (
-          <p>Loading...</p>
-        ) : (
-          currentIndex < champions.length ? (
-            <div className="champion">
-              <img 
-                src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
-                alt={`Самый умный?`} 
-                style={{ height: '200px' }} 
-              />
-              <p>Введите ваш ответ</p>
-              <Autocomplete
-                id="championsLolSearch"
-                options={options}
-                groupBy={(option) => option[0].toUpperCase()}
-                freeSolo
-                sx={{ width: 300, display: "inline-flex" }}
-                renderInput={(params) => <TextField {...params} label="Чемпион" />}
-                disabled={isGuessed}
-                value={selectedChampion || ''}
-                onChange={(event, value) => {
-                  setSelectedChampion(value || null);
-                }}
-              />
-            </div>
-          ) : championsLol.length === 0 ? (
-            <p>Loading...</p>
+      </div> */}
+      <div className="contentBox">
+        <div className="taskText">
+          Угадай чемпиона по груди!
+        </div>
+        <div>
+          {champions.length === 0 && championsLol.length === 0 ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <CircularProgress />
+              <p className="chestLoader">Loading...</p>
+            </Box>
           ) : (
-            <div className="nextLevelButton"><Link className="link" to="/friends">Friends</Link></div>
-            // championsLol.map((championLol, index) => (
-            //   <div key={index} className="championLol">
-            //     <p>{championLol.name}</p>
-            //   </div>
-            // ))
-          )
-        )}
+            currentIndex < champions.length ? (
+              <div className="champion">
+                <img 
+                  src={`https://birthdayquestbackend.onrender.com/chests/${champions[currentIndex].chest}`} 
+                  alt={`Самый умный?`} 
+                  style={{ height: '200px' }} 
+                />
+                <div className="subtaskText">
+                  Введите имя чемпиона
+                </div>
+              </div>
+            ) : championsLol.length === 0 ? (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <CircularProgress />
+              <p className="chestLoader">Loading...</p>
+            </Box>
+            ) : (
+              <div className="completedBox">
+                <div className="taskText">
+                  Этап пройден
+                </div>
+                <div className="nextLevelButton"><Link className="link" to="/friends">Угадай друга!</Link></div>
+              </div>
+            )
+          )}
+        </div>
       </div>
       {champions.length > 0 && (currentIndex < champions.length) &&(
-        <button onClick={handleGuess}>Угадать</button>
+      !isGuessed && <div className="guessBox">
+        <Autocomplete
+          className="guessTextBox autocomplete-no-border"
+          id="championsLolSearch"
+          options={options}
+          groupBy={(option) => option[0].toUpperCase()}
+          freeSolo
+          sx={{ width: 300, display: "inline-flex" }}
+          renderInput={(params) => <TextField className="guessTextField" {...params} placeholder="Чемпион" 
+          InputProps={{
+            ...params.InputProps,
+            style: {
+              color: "black",
+              fontFamily: '"Poiret One", monospace',
+              fontSize: 25,
+              fontWeight: "bold",
+            },
+          }}/>}
+          disabled={isGuessed}
+          value={selectedChampion || ''}
+          onChange={(event, value) => {
+          setSelectedChampion(value || null);
+          } } />
+        <div className="guessButtonBox">
+          <button className="guessButton" onClick={handleGuess}><ForwardIcon style={{height:"60px", width: "60px"}}/></button>
+        </div>
+      </div>
       )}
       {/* <button onClick={handleReset}>Reset</button> */}
       {isGuessed && (
-        <button onClick={handleNext}>Далее</button>
+        <div className="nextButtonBox">
+          <button className="nextButton" onClick={handleNext}>
+          Следующая
+          <ForwardIcon style={{height:"60px", width: "60px"}}/>
+          </button>
+        </div>
       )}
-      <ul>
-        {isGuessed && <li style={{backgroundColor: "green"}}>{champions[currentIndex].name}</li>}
-        {guessedChampion.map((champion, index) => (
-          <li key={index} style={{backgroundColor: "red"}}>{champion}</li>
-        ))}
-      </ul>
+      <div>
+        <ul className="incorrectPool" style={{marginTop: "25px"}}>
+      {isGuessed && <li className="correctGuess" style={{backgroundColor: "#D3EFAB"}}>
+            {champions[currentIndex].name}
+            <CheckIcon style={{height:"60px", width: "60px"}}/>
+            </li>}
+            </ul>
+        <ul className="incorrectPool" style={{marginBottom: "25px"}}>
+          {guessedChampion.map((champion, index) => (
+            <li key={index} className="incorrectGuess" style={{backgroundColor: "#E27D7D"}}>
+              {champion}
+              <CloseIcon style={{height:"60px", width: "60px"}}/>
+              </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

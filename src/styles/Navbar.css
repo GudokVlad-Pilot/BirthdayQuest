@@ -1,0 +1,48 @@
+.navbar {
+    display: flex;
+    justify-content: center;
+}
+
+.pages {
+    margin-top: 50px;
+    background-color: #ABA9C3;
+    width: 600px;
+    height: 90px;
+    display: flex;
+    border-radius: 90px;
+    /* justify-content: space-around; */
+}
+
+.navButton {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+.navButton.active {
+    background-color: #F9F1D2;
+    width: 280px;
+    box-shadow: 0 0 20px 5px rgba(255, 223, 0, 0.7); 
+    z-index: 1;
+}
+
+.navButton:first-child.active {
+    border-top-left-radius: 90px;
+    border-bottom-left-radius: 90px;
+}
+
+.navButton:last-child.active {
+    border-top-right-radius: 90px;
+    border-bottom-right-radius: 90px;
+}
+
+.navSpacer {
+    width: 10px;
+    background-color: #151423;
+    z-index: 0;
+}
+
+.iconLink {
+    height: 100%;
+}

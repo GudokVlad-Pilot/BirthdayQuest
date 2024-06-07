@@ -3,6 +3,7 @@ import axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
+import "../styles/FriendsPage.css"
 
 interface Friend {
   name: string;
@@ -66,21 +67,21 @@ const FriendsPage: React.FC = () => {
     const hasExactMatch = friend.hair.join(", ") === currentFriends[currentIndex].hair.join(", ");
     const hasPartialMatch = friend.hair.some(color => currentFriends[currentIndex].hair.includes(color));
     if (hasExactMatch) {
-      return "green";
+      return "#D3EFAB";
     } else if (hasPartialMatch) {
-      return "yellow";
+      return "#EAD181";
     } else {
-      return "red";
+      return "#E27D7D";
     }
   };
 
   const getCellStyle = (isExactMatch: boolean, isEarlier: boolean | null) => {
     if (isExactMatch) {
-      return { backgroundColor: "green" };
+      return { backgroundColor: "#D3EFAB" };
     } else if (isEarlier === true) {
-      return { backgroundImage: "url('/pictures/chestAhri.jpg')" };
+      return { backgroundImage: "url('/pictures/arrow_down.png')", backgroundColor: "#E27D7D" };
     } else if (isEarlier === false) {
-      return { backgroundImage: "url('/pictures/chestKaisa.jpg" };
+      return { backgroundImage: "url('/pictures/arrow_up.png')", backgroundColor: "#E27D7D"  };
     } else {
       return {};
     }
@@ -143,7 +144,7 @@ const FriendsPage: React.FC = () => {
           <button onClick={handleNext}>Далее</button>
         )}
         {(isGuessed || guessedFriends.length > 0) && (
-          <table>
+          <table className="friendTable">
             <thead>
               <tr>
                 <th>Имя</th>
@@ -161,10 +162,10 @@ const FriendsPage: React.FC = () => {
                   <td>{friend.name}</td>
                   <td style={getMeetingStyle(friend)}>{friend.meeting}</td>
                   <td style={{ backgroundColor: getHairColor(friend) }}>{friend.hair.join(", ")}</td>
-                  <td style={{ backgroundColor: friend.city === currentFriends[currentIndex].city ? "green" : "red" }}>{friend.city}</td>
+                  <td style={{ backgroundColor: friend.city === currentFriends[currentIndex].city ? "#D3EFAB" : "#E27D7D" }}>{friend.city}</td>
                   <td style={getBirthdayStyle(friend)}>{friend.birthday}</td>
-                  <td style={{ backgroundColor: friend.game === currentFriends[currentIndex].game ? "green" : "red" }}>{friend.game}</td>
-                  <td style={{ backgroundColor: friend.formula === currentFriends[currentIndex].formula ? "green" : "red" }}>{friend.formula}</td>
+                  <td style={{ backgroundColor: friend.game === currentFriends[currentIndex].game ? "#D3EFAB" : "#E27D7D" }}>{friend.game}</td>
+                  <td style={{ backgroundColor: friend.formula === currentFriends[currentIndex].formula ? "#D3EFAB" : "#E27D7D" }}>{friend.formula}</td>
                 </tr>
               ))}
             </tbody>

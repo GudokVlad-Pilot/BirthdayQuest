@@ -1,18 +1,33 @@
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 const Navbar = () => {
-    return (
-        <div className="navbar" >
-            <span className="homeButton"><Link className="linkHome" to="/" >Home</Link></span>
-            <div className="pages">
-                <span className="navButton"><Link className="link" to="/chest">Chest</Link></span>
-                <span className="navButton"><Link className="link" to="/friends">Friends</Link></span>
-                <span className="navButton"><Link className="link" to="/award">Award</Link></span>
-                <span className="navButton"><Link className="link" to="/numbers">Numbers</Link></span>
-                <span className="navButton"><Link className="link" to="/users">Users</Link></span>
-            </div>
-        </div>
-    )
-}
+  const location = useLocation();
+
+  return (
+    <div className="navbar">
+      <div className="pages">
+        <span className={`navButton ${location.pathname === '/chest' ? 'active' : ''}`}>
+          <Link className="link" to="/chest">
+            <img className="iconLink" src="/pictures/chest.png" alt="chestLink" />
+          </Link>
+        </span>
+        <div className='navSpacer'></div>
+        <span className={`navButton ${location.pathname === '/friends' ? 'active' : ''}`}>
+          <Link className="link" to="/friends">
+            <img className="iconLink" src="/pictures/friend.png" alt="friendLink" />
+          </Link>
+        </span>
+        <div className='navSpacer'></div>
+        <span className={`navButton ${location.pathname === '/award' ? 'active' : ''}`}>
+          <Link className="link" to="/award">
+            <img className="iconLink" src="/pictures/award.png" alt="awardLink" />
+          </Link>
+        </span>
+      </div>
+    </div>
+  );
+};
 
 export default Navbar;
