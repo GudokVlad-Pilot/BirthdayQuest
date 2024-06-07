@@ -13,11 +13,13 @@ const Navbar = () => {
             <img className="iconLink" src="/pictures/chest.png" alt="chestLink" />
           </Link>
         </span>
+        <div className='navSpacer'></div>
         <span className={`navButton ${location.pathname === '/friends' ? 'active' : ''}`}>
           <Link className="link" to="/friends">
             <img className="iconLink" src="/pictures/friend.png" alt="friendLink" />
           </Link>
         </span>
+        <div className='navSpacer'></div>
         <span className={`navButton ${location.pathname === '/award' ? 'active' : ''}`}>
           <Link className="link" to="/award">
             <img className="iconLink" src="/pictures/award.png" alt="awardLink" />

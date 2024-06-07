@@ -8,16 +8,78 @@
 
 .taskText {
     text-align: center;
-    color: white;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
+  }
+
+.subtaskText {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 32px;
+    font-weight: 400;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
   }
   
 .contentBox {
     margin-top: 75px;
     background-color: #ABA9C3;
-    width: 35%;
-    
+    width: 600px;
+    /* border-radius: 45px; */
+}
+
+.champion {
+    padding: 20px
+}
+
+.guessBox {
+    width: 600px;
 }
 
 .guessTextBox {
+    margin-top: 75px;
+    width: 480px !important;
     background-color: white;
+}
+
+.guessButton {
+    width: 120px;
+    height: 100%;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root {
+    border-color: transparent;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+}
+
+.chestLoader {
+    text-align: center;
+    color: white;
+    font-family: "Poiret One", monospace;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.nextLevelButton {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 32px;
+    font-weight: 400;
+    padding: 20px;
+    line-height: 1.5;
 }
