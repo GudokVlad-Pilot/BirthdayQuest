@@ -11,7 +11,7 @@ const LandingPage = () => {
           <div className="landingTitleText">
             С Днём рождения, Николай!
           </div>
-          <div className="landingSubtext">
+          <div className="landingSubtext" style={{marginBottom: "20px"}}>
               Наслаждайся интерактивом в честь твоего дня!
           </div>
         </div>
