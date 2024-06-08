@@ -90,7 +90,7 @@
     line-height: 1.5;
 }
 
-.nextLevelButton {
+/* .nextLevelButton {
     text-align: center;
     color: black;
     font-family: "Poiret One", monospace;
@@ -98,7 +98,7 @@
     font-weight: 400;
     padding: 20px;
     line-height: 1.5;
-}
+} */
 
 .guessTextField {
     border-color: transparent;

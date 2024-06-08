@@ -1,0 +1,34 @@
+.landingPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.landingTitleText {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 10px 0 0 0;
+    line-height: 1.5;
+  }
+
+.landingSubtext {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 36px;
+    font-weight: 400;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
+  }
+
+  .contentBox {
+    margin-top: 75px;
+    background-color: #ABA9C3;
+    width: 600px;
+    /* border-radius: 45px; */
+}

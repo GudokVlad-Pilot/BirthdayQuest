@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
-import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import CircularProgress from "@mui/material/CircularProgress";
 import ForwardIcon from '@mui/icons-material/Forward';
@@ -35,6 +34,7 @@ const ChestPage: React.FC = () => {
     }
     else if (selectedChampion !== null) {
       setGuessedChampion([...guessedChampion, selectedChampion]);
+      setSelectedChampion(null);
     }
     else {
       console.log('Выбранный чемпион не соответствует целевому чемпиону, действие не выполнено.');
@@ -91,9 +91,9 @@ const ChestPage: React.FC = () => {
           Угадай чемпиона по груди!
         </div>
         <div>
-          {champions.length === 0 && championsLol.length === 0 ? (
+          {champions.length === 0 || championsLol.length === 0 ? (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-              <CircularProgress />
+              <CircularProgress style={{color: "#F9F1D2"}}/>
               <p className="chestLoader">Loading...</p>
             </Box>
           ) : (
@@ -110,7 +110,7 @@ const ChestPage: React.FC = () => {
               </div>
             ) : championsLol.length === 0 ? (
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-              <CircularProgress />
+              <CircularProgress style={{color: "#F9F1D2"}}/>
               <p className="chestLoader">Loading...</p>
             </Box>
             ) : (
@@ -118,7 +118,7 @@ const ChestPage: React.FC = () => {
                 <div className="taskText">
                   Этап пройден
                 </div>
-                <div className="nextLevelButton"><Link className="link" to="/friends">Угадай друга!</Link></div>
+                {/* <div className="nextLevelButton"><Link className="link" to="/friends">Угадай друга!</Link></div> */}
               </div>
             )
           )}
@@ -172,7 +172,7 @@ const ChestPage: React.FC = () => {
         <ul className="incorrectPool" style={{marginBottom: "25px"}}>
           {guessedChampion.map((champion, index) => (
             <li key={index} className="incorrectGuess" style={{backgroundColor: "#E27D7D"}}>
-              {champion}
+              {champion.charAt(0).toUpperCase() + champion.slice(1)}
               <CloseIcon style={{height:"60px", width: "60px"}}/>
               </li>
           ))}
