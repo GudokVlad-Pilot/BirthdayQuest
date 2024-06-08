@@ -10,7 +10,7 @@
     height: 90px;
     display: flex;
     border-radius: 90px;
-    /* justify-content: space-around; */
+    justify-content: space-around;
 }
 
 .navButton {

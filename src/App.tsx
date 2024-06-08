@@ -1,6 +1,6 @@
 import './App.css';
 import Navbar from './components/Navbar';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import LandingPage from './pages/LandingPage';
 import NumbersPage from './pages/NumbersPage';
 import UsersPage from './pages/UsersPage';
@@ -13,7 +13,9 @@ function App() {
     <div className="App" style={{
         // backgroundImage: `url(${Background})` 
       }}>
-      <img className='logoName' src='/pictures/logo_name.png' alt='logo_name'/>
+      <Link to="/">
+        <img className='logoName' src='/pictures/logo_name.png' alt='logo_name'/>
+      </Link>
       <Navbar />
       <Routes>
         <Route path='/' element={<LandingPage />} />

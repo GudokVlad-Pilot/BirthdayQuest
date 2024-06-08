@@ -1,6 +1,5 @@
-import Box from "@mui/material/Box";
-import CircularProgress from "@mui/material/CircularProgress";
 import { useEffect } from "react";
+import "../styles/LandingPage.css"
 
 const LandingPage = () => {
   useEffect(() => {
@@ -8,19 +7,14 @@ const LandingPage = () => {
   }, [])
     return (
       <div className="landingPage">
-        <div className="pageTitle">
-            This is the home page.
+        <div className="contentBox">
+          <div className="landingTitleText">
+            С Днём рождения, Николай!
+          </div>
+          <div className="landingSubtext">
+              Наслаждайся интерактивом в честь твоего дня!
+          </div>
         </div>
-        <div className="Text">
-            Some text here
-        </div>
-          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-            <CircularProgress />
-            <p> Loading...</p>
-          </Box>
-          <Box sx={{ display: 'flex', justifyContent: 'center'}}>
-            <CircularProgress />
-          </Box>
     </div>
     );
   };
