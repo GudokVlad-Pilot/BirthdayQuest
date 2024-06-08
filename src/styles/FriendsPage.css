@@ -1,3 +1,213 @@
 .friendTable {
     width: 100%;
 }
+
+.friendsPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.taskText {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
+  }
+
+.subtaskText {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 36px;
+    font-weight: 400;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
+  }
+  
+.contentBox {
+    margin-top: 75px;
+    background-color: #ABA9C3;
+    width: 600px;
+    /* border-radius: 45px; */
+}
+
+.friendLoader {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.guessBox {
+    width: 600px;
+    display: flex;
+}
+
+.guessTextBox {
+    margin-top: 75px;
+    width: 480px !important;
+    background-color: white;
+    border-color: transparent !important;
+    z-index: 1;
+}
+
+.guessButtonBox {
+    margin-top: 75px;
+}
+
+.guessButton {
+    width: 120px;
+    height: 100%;
+    border-radius: 0 60px 60px 0 ;
+    border-color: transparent;
+    cursor: pointer;
+    background-color: rgb(210, 210, 210);
+    box-shadow: 0 0 20px 5px rgba(160, 160, 160, 0.7); 
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root {
+    border-width: 0;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+}
+
+.autocomplete-no-border .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+    border-color: transparent;
+}
+
+.guessTextField {
+    border-color: transparent;
+}
+
+.guessTextField .MuiInputBase-input::placeholder {
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.guessTextField .MuiInputBase-input {
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+/* .friendTable {
+    margin: 25px;
+    width: 700px;
+    table-layout: fixed;
+    border-collapse: separate; 
+    border-spacing: 5px; 
+    background-color: transparent; 
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .friendTable th,
+  .friendTable td {
+    width: 100px;
+    text-align: center;
+    word-wrap: break-word;
+    background-color: #ABA9C3;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: 100%; 
+  }
+  
+  .friendTable thead {
+    background-color: #ABA9C3;
+    height: 50px;
+  }
+  
+  .friendTable tbody tr {
+    background-color: #ABA9C3;
+    height: 100px;
+  } */
+
+  @keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px); /* Для легкого перемещения вверх при появлении */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+  .friendTable {
+  margin: 25px;
+  width: 700px;
+  table-layout: fixed;
+  border-collapse: separate; /* Меняем на separate для использования border-spacing */
+  border-spacing: 5px; /* Пространство между ячейками */
+  background-color: transparent; /* Прозрачный фон таблицы */
+  color: black;
+  font-family: "Poiret One", monospace;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.friendTable th,
+.friendTable td {
+  width: 100px;
+  text-align: center;
+  word-wrap: break-word;
+  background-color: #ABA9C3; /* Цвет фона ячеек */
+  background-position: center; /* Центрируем фоновое изображение */
+  background-repeat: no-repeat; /* Предотвращаем повторение фонового изображения */
+  background-size: 100%; /* Настраиваем размер фонового изображения */
+  opacity: 0; /* Начальное состояние - невидимая ячейка */
+  animation: fadeIn 0.5s forwards; /* Анимация появления ячейки */
+  animation-delay: var(--animation-delay); /* Задержка анимации для последовательного появления */
+}
+
+.friendTable thead {
+  background-color: #ABA9C3;
+  height: 50px;
+}
+
+.friendTable tbody tr {
+  background-color: #ABA9C3;
+  height: 100px;
+  opacity: 0; /* Начальное состояние - невидимая строка */
+  animation: slideIn 0.5s forwards; /* Анимация появления строки */
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px); /* Строка начинает ниже своего окончательного положения */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0); /* Строка в окончательном положении */
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

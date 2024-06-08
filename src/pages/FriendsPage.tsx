@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { Link } from "react-router-dom";
 import "../styles/FriendsPage.css"
+import Box from "@mui/material/Box";
+import ForwardIcon from '@mui/icons-material/Forward';
+import CircularProgress from "@mui/material/CircularProgress";
 
 interface Friend {
   name: string;
@@ -27,6 +29,7 @@ const FriendsPage: React.FC = () => {
   const [currentFriends, setCurrentFriends] = useState<Friend[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [guessedFriends, setGuessedFriends] = useState<Friend[]>([]);
+  
 
   useEffect(() => {
     const fetchFriends = async () => {
@@ -49,6 +52,7 @@ const FriendsPage: React.FC = () => {
       setGuessedFriends([selected, ...guessedFriends]);
     } else if (selected && !isGuessed) {
       setGuessedFriends([selected, ...guessedFriends]);
+      setSelectedFriend(null);
     } else {
       console.log('Выбранный друг не соответствует целевому другу, действие не выполнено.');
     }
@@ -79,9 +83,9 @@ const FriendsPage: React.FC = () => {
     if (isExactMatch) {
       return { backgroundColor: "#D3EFAB" };
     } else if (isEarlier === true) {
-      return { backgroundImage: "url('/pictures/arrow_down.png')", backgroundColor: "#E27D7D" };
+      return { backgroundImage: "url('/pictures/arrow_up.png')", backgroundColor: "#E27D7D" };
     } else if (isEarlier === false) {
-      return { backgroundImage: "url('/pictures/arrow_up.png')", backgroundColor: "#E27D7D"  };
+      return { backgroundImage: "url('/pictures/arrow_down.png')", backgroundColor: "#E27D7D"  };
     } else {
       return {};
     }
@@ -102,77 +106,123 @@ const FriendsPage: React.FC = () => {
   };
 
   return (
-    <div className="numbersPage">
-      <div className="pageTitle">
-        This is the friends page.
-      </div>
-      <div className="text">
-        Классика LoLdle, но с твоими друзьями!
-      </div>
+    <div className="friendsPage">
+      <div className="contentBox">
+          <div className="taskText">
+            Угадай друга!
+          </div>
+          {currentFriends.length === 0 ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <CircularProgress style={{color: "#F9F1D2"}}/>
+            <p className="friendLoader">Loading...</p>
+          </Box>
+        ) : (
+          currentIndex < currentFriends.length ?
+          (<div className="subtaskText" style={{marginBottom: "20px"}}>
+            {/* <p>{currentFriends[currentIndex].name}</p> */}
+            Введите имя, чтобы начать
+          </div>):(
+            currentFriends.length === 0 ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <CircularProgress style={{color: "#F9F1D2"}}/>
+                <p className="friendLoader">Loading...</p>
+              </Box>
+              ) : (
+                <div className="completedBox">
+                  <div className="taskText">
+                    Этап пройден
+                  </div>
+                </div>
+              )
+          )
+          )}
+        </div>
+      {/* <div className="guessContent"> */}
+      {currentFriends.length > 0 && (currentIndex < currentFriends.length) && 
       <div>
-        {currentFriends.length === 0 ? (
-          <p>Loading...</p>
+{      !isGuessed && <div className="guessBox">
+        <Autocomplete
+        className="guessTextBox autocomplete-no-border"
+        id="friendsSearch"
+        options={options}
+        groupBy={(option) => option[0].toUpperCase()}
+        freeSolo
+        sx={{ width: 300, display: "inline-flex" }}
+        renderInput={(params) => <TextField className="guessTextField" {...params} placeholder="Друг" 
+        InputProps={{
+          ...params.InputProps,
+          style: {
+            color: "black",
+            fontFamily: '"Poiret One", monospace',
+            fontSize: 25,
+            fontWeight: "bold",
+          },
+        }}/>}
+        disabled={isGuessed}
+        value={selectedFriend || ''}
+        onChange={(event, value) => {
+          setSelectedFriend(value || null);
+        }}
+      />
+      <div className="guessButtonBox">
+          <button className="guessButton" onClick={handleGuess}><ForwardIcon style={{height:"60px", width: "60px"}}/></button>
+        </div>
+      </div>}
+      {isGuessed && (
+        <div className="nextButtonBox">
+          <button className="nextButton" onClick={handleNext}>
+          Следующий
+          <ForwardIcon style={{height:"60px", width: "60px"}}/>
+          </button>
+        </div>
+      )}
+      </div>}
+        {/* {currentFriends.length === 0 ? (
+          <div/>
         ) : (
           currentIndex < currentFriends.length ? (
             <div className="friend">
               <p>{currentFriends[currentIndex].name}</p>
-              <p>Введите ваш ответ</p>
-              <Autocomplete
-                id="friendsSearch"
-                options={options}
-                groupBy={(option) => option[0].toUpperCase()}
-                freeSolo
-                sx={{ width: 300, display: "inline-flex" }}
-                renderInput={(params) => <TextField {...params} label="Друг" />}
-                disabled={isGuessed}
-                value={selectedFriend || ''}
-                onChange={(event, value) => {
-                  setSelectedFriend(value || null);
-                }}
-              />
             </div>
           ) : currentFriends.length === 0 ? (
-            <p>Loading...</p>
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+              <CircularProgress style={{color: "#F9F1D2"}}/>
+              <p className="friendLoader">Loading...</p>
+            </Box>
           ) : (
             <div className="nextLevelButton"><Link className="link" to="/award">Award</Link></div>
           )
-        )}
-        {currentFriends.length > 0 && (currentIndex < currentFriends.length) && (
-          <button onClick={handleGuess}>Угадать</button>
-        )}
-        {isGuessed && (
-          <button onClick={handleNext}>Далее</button>
-        )}
-        {(isGuessed || guessedFriends.length > 0) && (
-          <table className="friendTable">
-            <thead>
-              <tr>
-                <th>Имя</th>
-                <th>Год знакомства</th>
-                <th>Цвет Волос</th>
-                <th>Город обучения</th>
-                <th>Год рождения</th>
-                <th>Любимая игра</th>
-                <th>Любимая команда F1</th>
-              </tr>
-            </thead>
-            <tbody>
-              {guessedFriends.map((friend, index) => (
-                <tr key={index}>
-                  <td>{friend.name}</td>
-                  <td style={getMeetingStyle(friend)}>{friend.meeting}</td>
-                  <td style={{ backgroundColor: getHairColor(friend) }}>{friend.hair.join(", ")}</td>
-                  <td style={{ backgroundColor: friend.city === currentFriends[currentIndex].city ? "#D3EFAB" : "#E27D7D" }}>{friend.city}</td>
-                  <td style={getBirthdayStyle(friend)}>{friend.birthday}</td>
-                  <td style={{ backgroundColor: friend.game === currentFriends[currentIndex].game ? "#D3EFAB" : "#E27D7D" }}>{friend.game}</td>
-                  <td style={{ backgroundColor: friend.formula === currentFriends[currentIndex].formula ? "#D3EFAB" : "#E27D7D" }}>{friend.formula}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )}
+        )} */}
+{(isGuessed || guessedFriends.length > 0) && (
+  <table className="friendTable">
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Год знакомства</th>
+        <th>Цвет Волос</th>
+        <th>Город обучения</th>
+        <th>Год рождения</th>
+        <th>Любимая игра</th>
+        <th>Любимая команда F1</th>
+      </tr>
+    </thead>
+    <tbody>
+      {guessedFriends.slice().reverse().map((friend, index) => (
+        <tr key={index} style={{ animation: `slideIn 0.5s forwards`, animationDelay: `${index * 0.5}s` }}>
+          <td>{friend.name}</td>
+          <td style={{ ...getMeetingStyle(friend), animation: `fadeIn 0.5s forwards`, animationDelay: `${index * 0.5 + 0.5}s` }}>{friend.meeting}</td>
+          <td style={{ backgroundColor: getHairColor(friend), animation: `fadeIn 0.5s forwards`, animationDelay: `${index * 0.5 + 1}s` }}>{friend.hair.join(", ")}</td>
+          <td style={{ backgroundColor: friend.city === currentFriends[currentIndex].city ? "#D3EFAB" : "#E27D7D", animation: `fadeIn 0.5s forwards`, animationDelay: `${index * 0.5 + 1.5}s` }}>{friend.city}</td>
+          <td style={{ ...getBirthdayStyle(friend), animation: `fadeIn 0.5s forwards`, animationDelay: `${index * 0.5 + 2}s` }}>{friend.birthday}</td>
+          <td style={{ backgroundColor: friend.game === currentFriends[currentIndex].game ? "#D3EFAB" : "#E27D7D", animation: `fadeIn 0.5s forwards`, animationDelay: `${index * 0.5 + 2.5}s` }}>{friend.game}</td>
+          <td style={{ backgroundColor: friend.formula === currentFriends[currentIndex].formula ? "#D3EFAB" : "#E27D7D", animation: `fadeIn 0.5s forwards`, animationDelay: `${index * 0.5 + 3}s` }}>{friend.formula}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)}
       </div>
-    </div>
+    // </div>
   );
 };
 
