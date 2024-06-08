@@ -221,6 +221,7 @@ const FriendsPage: React.FC = () => {
     </tbody>
   </table>
 )}
+      <div style={{margin: "10px"}}/>
       </div>
     // </div>
   );
