@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -6,20 +6,12 @@ import ForwardIcon from '@mui/icons-material/Forward';
 import "../styles/AwardPage.css"
 
 const AwardPage: React.FC = () => {
+
+  const [isDownloaded, setIsDownloaded] = useState<boolean>(false)
+
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Запрашиваем разрешение на отправку уведомлений, если его еще нет
-    if ("Notification" in window && Notification.permission !== "granted" && Notification.permission !== "denied") {
-      Notification.requestPermission();
-    }
   }, []);
-
-  const showNotification = () => {
-    if ("Notification" in window && Notification.permission === "granted") {
-      new Notification("-Официант, яйцо! -Вам пожарить или сварить? -Почесать.");
-    }
-  };
 
   const downloadPDF = async () => {
     const pdfElement = document.getElementById("pdfElement");
@@ -41,13 +33,31 @@ const AwardPage: React.FC = () => {
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       pdf.save("award.pdf");
 
-      // Показываем уведомление после скачивания
-      showNotification();
+      setIsDownloaded(true)
+
     }
+  };
+
+  const handleClose = () => {
+    setIsDownloaded(false);
   };
 
   return (
     <div className="awardPage">
+      {isDownloaded && (
+        <>
+          <div className="overlay"></div>
+          <div className="popup">
+            <p>-Официант, яйцо!</p>
+            <p>-Вам пожарить или сварить?</p>
+            <p>-Почесать.</p>
+            <button className="closeButton" onClick={handleClose}>
+              Закрыть
+            </button>
+          </div>
+        </>
+      )}
+
       <div className="contentBox">
           <div className="taskText">
             Поздравляем! 
