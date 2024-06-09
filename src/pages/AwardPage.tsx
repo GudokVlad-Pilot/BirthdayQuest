@@ -4,6 +4,7 @@ import html2canvas from "html2canvas";
 import DownloadIcon from '@mui/icons-material/Download';
 import ForwardIcon from '@mui/icons-material/Forward';
 import "../styles/AwardPage.css"
+import AwardPhoto from '../components/awardPhoto.jpg'
 
 const AwardPage: React.FC = () => {
 
@@ -50,9 +51,9 @@ const AwardPage: React.FC = () => {
           <div className="popup">
             <p>-Официант, яйцо!</p>
             <p>-Вам пожарить или сварить?</p>
-            <p>-Почесать.</p>
+            {/* <p>-Почесать.</p> */}
             <button className="closeButton" onClick={handleClose}>
-              Закрыть
+              -Почесать.
             </button>
           </div>
         </>
@@ -79,7 +80,7 @@ const AwardPage: React.FC = () => {
             backgroundColor: "white"
           }}
         >
-          Some text here
+          <img src={AwardPhoto} alt="" style={{height: "inherit", margin: "-56px"}} />
         </div>
         <div className="downloadButtonBox">
           <button className="downloadButton" onClick={downloadPDF}>
