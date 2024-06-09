@@ -1,0 +1,111 @@
+.awardPage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+
+.taskText {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 42px;
+    font-weight: bold;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
+  }
+
+.subtaskText {
+    text-align: center;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 36px;
+    font-weight: 400;
+    padding: 20px 0 0 0;
+    line-height: 1.5;
+  }
+  
+.contentBox {
+    margin-top: 75px;
+    background-color: #ABA9C3;
+    width: 600px;
+    /* border-radius: 45px; */
+}
+
+.awardEditor {
+    margin-top: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pdfBox {
+    box-shadow: 0 0 20px 5px rgba(255, 223, 0, 0.7);
+}
+
+.downloadButtonBox {
+    display: flex;
+    width: 600px;
+    margin-top: 75px;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: "#EAD181";
+    border-radius: 0 60px 60px 0 ;
+    box-shadow: 0 0 20px 5px rgba(255, 223, 0, 0.7);
+    animation: fadeIn 2s ease-in-out;
+}
+
+.downloadButton {
+    width: 100%;
+    height: 60px;
+    border-radius: 0 60px 60px 0 ;
+    border-color: transparent;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #F9F1D2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 15px;
+}
+
+.sendButtonBox {
+    display: flex;
+    width: 600px;
+    margin: 50px;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    background-color: "#EAD181";
+    border-radius: 0 60px 60px 0 ;
+    box-shadow: 0 0 20px 5px rgba(255, 223, 0, 0.7);
+    animation: fadeIn 2s ease-in-out;
+    background-color: #F9F1D2;
+    text-decoration: none; 
+}
+
+.sendButton {
+    width: 100%;
+    height: 60px;
+    border-radius: 0 60px 60px 0 ;
+    border-color: transparent;
+    font-family: "Poiret One", monospace;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #F9F1D2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px 0 15px;
+}
