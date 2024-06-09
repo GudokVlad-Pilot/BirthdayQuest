@@ -79,7 +79,8 @@ const AwardPage: React.FC = () => {
         </div>
       </div>
       <a className="sendButtonBox"
-        href="https://api.whatsapp.com/send/?phone=358465508147&text&type=phone_number&app_absent=0"
+        // href="https://api.whatsapp.com/send/?phone=358465508147&text&type=phone_number&app_absent=0"
+        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         target="_blank"
         rel="noopener noreferrer">
           <div className="sendButton">
