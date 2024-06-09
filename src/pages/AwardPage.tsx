@@ -31,7 +31,14 @@ const AwardPage: React.FC = () => {
 
   return (
     <div className="landingPage">
-      <div className="pageTitle">This is the award page.</div>
+      <div className="contentBox">
+          <div className="taskText">
+            Поздравляем! 
+          </div>
+          <div className="subtaskText" style={{marginBottom: "20px"}}>
+            Введите имя, чтобы начать
+          </div>
+      </div>
       <div
         className="pdfBox"
         id="pdfElement"
