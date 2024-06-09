@@ -8,7 +8,18 @@ import "../styles/AwardPage.css"
 const AwardPage: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+
+    // Запрашиваем разрешение на отправку уведомлений, если его еще нет
+    if ("Notification" in window && Notification.permission !== "granted" && Notification.permission !== "denied") {
+      Notification.requestPermission();
+    }
   }, []);
+
+  const showNotification = () => {
+    if ("Notification" in window && Notification.permission === "granted") {
+      new Notification("-Официант, яйцо! -Вам пожарить или сварить? -Почесать.");
+    }
+  };
 
   const downloadPDF = async () => {
     const pdfElement = document.getElementById("pdfElement");
@@ -29,6 +40,9 @@ const AwardPage: React.FC = () => {
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
       pdf.save("award.pdf");
+
+      // Показываем уведомление после скачивания
+      showNotification();
     }
   };
 
@@ -60,18 +74,18 @@ const AwardPage: React.FC = () => {
         <div className="downloadButtonBox">
           <button className="downloadButton" onClick={downloadPDF}>
             Скачать
-          <DownloadIcon style={{height:"60px", width: "60px"}}/>
+            <DownloadIcon style={{height:"60px", width: "60px"}}/>
           </button>
         </div>
-        {/* <button onClick={downloadPDF}>Download PDF</button> */}
       </div>
       <a className="sendButtonBox"
-        href="https://api.whatsapp.com/send/?phone=358465508147&text&type=phone_number&app_absent=0"
+        // href="https://api.whatsapp.com/send/?phone=358465508147&text&type=phone_number&app_absent=0"
+        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         target="_blank"
         rel="noopener noreferrer">
           <div className="sendButton">
             Отправить
-          <ForwardIcon style={{height:"60px", width: "60px"}}/>
+            <ForwardIcon style={{height:"60px", width: "60px"}}/>
           </div>
       </a>
     </div>
