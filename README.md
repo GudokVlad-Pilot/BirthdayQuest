@@ -76,5 +76,5 @@ The app consist of navigation bar and 4 pages.
 
 ## References
 
-Friends page: [LoLdle](https://loldle.net/)
-Chest page: [LoLdle (chest edition)](https://loldle.rovi.me/)
+- Friends page: [LoLdle](https://loldle.net/)
+- Chest page: [LoLdle (chest edition)](https://loldle.rovi.me/)
