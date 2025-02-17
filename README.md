@@ -3,11 +3,11 @@
 This is frontend part of the project that was created as a birthday gift for my friend Niko. The project is hosted by [Netlify](https://www.netlify.com/). Here is the link to the website (in Russian): [NikoDle](https://nikodle.netlify.app/). You can check backend code here: [backend](https://github.com/GudokVlad-Pilot/BirthdayQuestBackend).
 
 > [!IMPORTANT]
-> The app was created for personal non-commercial use.
-> All the references added in the README.md.
-> All the League of Legends champions belongs to [Riot Games](https://www.riotgames.com/en).
-> The app is not setting the goal to humiliate or sexualise female and male bodies.
-> If you found any violations, please contact me via email to resolve these problems: **vladislavpogudin.dev@gmail.com**.
+> - The app was created for personal non-commercial use.
+> - All the references added in the README.md.
+> - All the League of Legends champions belongs to [Riot Games](https://www.riotgames.com/en).
+> - The app is not setting the goal to humiliate or sexualise female and male bodies.
+> - If you found any violations, please contact me via email to resolve these problems: **vladislavpogudin.dev@gmail.com**.
 
 ## Setting the environment
 
