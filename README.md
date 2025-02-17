@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# NikoDle App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is frontend part of the project that was created as a birthday gift for my friend Niko. The project is hosted by [Netlify](https://www.netlify.com/). Here is the link to the website (in Russian): [NikoDle](https://nikodle.netlify.app/). You can check backend code here: [backend](https://github.com/GudokVlad-Pilot/BirthdayQuestBackend).
 
-## Available Scripts
+> [!IMPORTANT]
+> The app was created for personal non-commercial use.
+> All the references added in the README.md.
+> All the League of Legends champions belongs to [Riot Games](https://www.riotgames.com/en).
+> The app is not setting the goal to humiliate or sexualise female and male bodies.
+> If you found any violations, please contact me via email to resolve these problems: **vladislavpogudin.dev@gmail.com**.
 
-In the project directory, you can run:
+## Setting the environment
 
-### `npm start`
+1. Clone the repository.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+   ```bash
+   https://github.com/GudokVlad-Pilot/BirthdayQuest.git
+   ```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Check that you have the latest Node.js version.
 
-### `npm test`
+   ```bash
+   node -v
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. If you do not have Node.js installed, you can download it from here: [Node.js website](https://nodejs.org/en).
 
-### `npm run build`
+## Instructions to run the app
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Install dependencies.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   npm install
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Start the app.
 
-### `npm run eject`
+   ```bash
+    npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2. 1. You can build your project separately:
+        ```bash
+         npm run build
+        ```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+3. Local version is available via link in the output, but usually it is run on your [localhost](http://localhost:3000/)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## The architecture of the app
 
-## Learn More
+### Language
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- TypeScript (React) and CSS for frontend.
+- JavaScript (Node.js) for backend.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Data Storage and Management
+
+- The data for task pages is located on backend.
+- The data for award is stored locally.
+
+### App navigation structure
+
+- Landing page: the initial page with brief introduction.
+- Chest page: the page where Niko should guess 10 [League of Legends champions](https://www.leagueoflegends.com/en-us/champions/) by their chest (as an Easter Egg chests of two his friends were also added).
+- Friends page: the page where Niko should guess 3 of his friends by description.
+- Award page: the last page where Niko get his award and can download it (Easter Eggs: When Niko downloads the award, the joke appears; When he wants to send it, the Rickroll opens).
+
+### Design
+
+The app consist of navigation bar and 4 pages.
+
+- The icons and app design was created by [Charlie](https://www.instagram.com/charlieandarchitecture/?igsh=a3JjcTJjNzhiZmg1#).
+- The implementation by [GudokVlad](https://github.com/GudokVlad-Pilot).
+
+## References
+
+Friends page: [LoLdle](https://loldle.net/)
+Chest page: [LoLdle (chest edition)](https://loldle.rovi.me/)
