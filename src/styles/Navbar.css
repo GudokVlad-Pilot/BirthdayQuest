@@ -17,7 +17,7 @@
     width: 150px;
     display: flex;
     justify-content: center;
-    transition: all 0.3s ease; /* Smooth transition */
+    transition: all 0.3s ease;
 }
 
 .navButton.active {

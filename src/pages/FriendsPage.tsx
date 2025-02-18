@@ -65,7 +65,6 @@ const FriendsPage: React.FC = () => {
   };
 
   useEffect(() => {
-    // Прокручиваем вниз каждый раз, когда обновляется guessedFriends
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   }, [guessedFriends]);
 

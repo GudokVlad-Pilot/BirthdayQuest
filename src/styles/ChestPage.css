@@ -30,7 +30,6 @@
     margin-top: 75px;
     background-color: #ABA9C3;
     width: 600px;
-    /* border-radius: 45px; */
 }
 
 .champion {
@@ -90,16 +89,6 @@
     line-height: 1.5;
 }
 
-/* .nextLevelButton {
-    text-align: center;
-    color: black;
-    font-family: "Poiret One", monospace;
-    font-size: 32px;
-    font-weight: 400;
-    padding: 20px;
-    line-height: 1.5;
-} */
-
 .guessTextField {
     border-color: transparent;
 }
@@ -118,44 +107,10 @@
     font-weight: bold;
 }
 
-/* .incorrectGuess {
-    display: flex;
-    list-style-type: none;
-    width: 555px;
-    margin-top: 20px;
-    margin-left: -40px;
-    align-items: center;
-    justify-content: space-between;
-    color: black;
-    font-family: "Poiret One", monospace;
-    font-size: 25px;
-    font-weight: bold;
-    padding: 0 30px 0 15px;
-    border-radius: 0 60px 60px 0 ;
-    box-shadow: 0 0 20px 5px rgba(216, 125, 125, 0.7); 
-}
-
-.correctGuess {
-    display: flex;
-    list-style-type: none;
-    width: 555px;
-    margin-top: 20px;
-    margin-left: -40px;
-    align-items: center;
-    justify-content: space-between;
-    color: black;
-    font-family: "Poiret One", monospace;
-    font-size: 25px;
-    font-weight: bold;
-    padding: 0 30px 0 15px;
-    border-radius: 0 60px 60px 0 ;
-    box-shadow: 0 0 20px 5px rgba(211, 239, 171, 0.7); 
-} */
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
-        transform: translateY(-10px); /* Для легкого перемещения вверх при появлении */
+        transform: translateY(-10px);
     }
     100% {
         opacity: 1;
@@ -175,7 +130,7 @@
     font-family: "Poiret One", monospace;
     font-size: 25px;
     font-weight: bold;
-    padding: 0 30px 0 15px; /*40px is recomended*/
+    padding: 0 30px 0 15px;
     border-radius: 0 60px 60px 0 ;
     box-shadow: 0 0 20px 5px rgba(216, 125, 125, 0.7); 
     animation: fadeIn 0.5s ease-in-out;

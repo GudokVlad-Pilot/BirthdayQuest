@@ -34,7 +34,6 @@
     margin-top: 75px;
     background-color: #ABA9C3;
     width: 600px;
-    /* border-radius: 45px; */
 }
 
 .friendLoader {
@@ -108,44 +107,10 @@
     font-weight: bold;
 }
 
-/* .friendTable {
-    margin: 25px;
-    width: 700px;
-    table-layout: fixed;
-    border-collapse: separate; 
-    border-spacing: 5px; 
-    background-color: transparent; 
-    color: black;
-    font-family: "Poiret One", monospace;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .friendTable th,
-  .friendTable td {
-    width: 100px;
-    text-align: center;
-    word-wrap: break-word;
-    background-color: #ABA9C3;
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: 100%; 
-  }
-  
-  .friendTable thead {
-    background-color: #ABA9C3;
-    height: 50px;
-  }
-  
-  .friendTable tbody tr {
-    background-color: #ABA9C3;
-    height: 100px;
-  } */
-
   @keyframes fadeIn {
     0% {
         opacity: 0;
-        transform: translateY(-10px); /* Для легкого перемещения вверх при появлении */
+        transform: translateY(-10px);
     }
     100% {
         opacity: 1;
@@ -157,9 +122,9 @@
   margin: 25px;
   width: 700px;
   table-layout: fixed;
-  border-collapse: separate; /* Меняем на separate для использования border-spacing */
-  border-spacing: 5px; /* Пространство между ячейками */
-  background-color: transparent; /* Прозрачный фон таблицы */
+  border-collapse: separate;
+  border-spacing: 5px;
+  background-color: transparent;
   color: black;
   font-family: "Poiret One", monospace;
   font-size: 18px;
@@ -171,13 +136,13 @@
   width: 100px;
   text-align: center;
   word-wrap: break-word;
-  background-color: #ABA9C3; /* Цвет фона ячеек */
-  background-position: center; /* Центрируем фоновое изображение */
-  background-repeat: no-repeat; /* Предотвращаем повторение фонового изображения */
-  background-size: 100%; /* Настраиваем размер фонового изображения */
-  opacity: 0; /* Начальное состояние - невидимая ячейка */
-  animation: fadeIn 0.5s forwards; /* Анимация появления ячейки */
-  animation-delay: var(--animation-delay); /* Задержка анимации для последовательного появления */
+  background-color: #ABA9C3;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+  animation-delay: var(--animation-delay);
 }
 
 .friendTable thead {
@@ -188,17 +153,17 @@
 .friendTable tbody tr {
   background-color: #ABA9C3;
   height: 100px;
-  opacity: 0; /* Начальное состояние - невидимая строка */
-  animation: slideIn 0.5s forwards; /* Анимация появления строки */
+  opacity: 0;
+  animation: slideIn 0.5s forwards;
 }
 
 @keyframes slideIn {
   from {
-    transform: translateY(20px); /* Строка начинает ниже своего окончательного положения */
+    transform: translateY(20px);
     opacity: 0;
   }
   to {
-    transform: translateY(0); /* Строка в окончательном положении */
+    transform: translateY(0);
     opacity: 1;
   }
 }
