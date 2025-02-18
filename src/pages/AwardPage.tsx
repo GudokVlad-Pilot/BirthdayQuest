@@ -18,7 +18,6 @@ const AwardPage: React.FC = () => {
     const pdfElement = document.getElementById("pdfElement");
 
     if (pdfElement) {
-      // Увеличиваем масштаб, чтобы учесть границу и паддинг
       const scale = 3;
       const canvas = await html2canvas(pdfElement, { scale });
       const imgData = canvas.toDataURL("image/png");
@@ -28,7 +27,7 @@ const AwardPage: React.FC = () => {
         format: [297, 210], // A4 size in mm
       });
 
-      const imgWidth = 210; // ширина листа А4
+      const imgWidth = 210;
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
       pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
@@ -51,7 +50,6 @@ const AwardPage: React.FC = () => {
           <div className="popup">
             <p>-Официант, яйцо!</p>
             <p>-Вам пожарить или сварить?</p>
-            {/* <p>-Почесать.</p> */}
             <button className="closeButton" onClick={handleClose}>
               -Почесать.
             </button>
@@ -72,8 +70,8 @@ const AwardPage: React.FC = () => {
           className="pdfBox"
           id="pdfElement"
           style={{
-            width: "190mm", // ширина A4 минус паддинг и граница
-            height: "269mm", // высота A4 минус паддинг и граница
+            width: "190mm",
+            height: "269mm",
             border: "5mm solid #F9F1D2",
             padding: "10mm",
             boxSizing: "border-box",
@@ -90,7 +88,6 @@ const AwardPage: React.FC = () => {
         </div>
       </div>
       <a className="sendButtonBox"
-        // href="https://api.whatsapp.com/send/?phone=358465508147&text&type=phone_number&app_absent=0"
         href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
         target="_blank"
         rel="noopener noreferrer">

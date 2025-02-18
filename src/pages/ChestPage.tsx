@@ -48,11 +48,6 @@ const ChestPage: React.FC = () => {
     setIsGuessed(false)
   };
 
-  // const handleReset = () => {
-  //   setCurrentIndex(0);
-  //   setSelectedChampion(null);
-  // };
-
   useEffect(() => {
     const fetchChampions = async () => {
       try {
@@ -83,9 +78,6 @@ const ChestPage: React.FC = () => {
 
   return (
     <div className="chestsPage">
-      {/* <div className="pageTitle">
-        This is the chest page.
-      </div> */}
       <div className="contentBox">
         <div className="taskText">
           Угадай чемпиона по груди!
@@ -118,7 +110,6 @@ const ChestPage: React.FC = () => {
                 <div className="taskText">
                   Этап пройден
                 </div>
-                {/* <div className="nextLevelButton"><Link className="link" to="/friends">Угадай друга!</Link></div> */}
               </div>
             )
           )}
@@ -153,7 +144,6 @@ const ChestPage: React.FC = () => {
         </div>
       </div>
       )}
-      {/* <button onClick={handleReset}>Reset</button> */}
       {isGuessed && (
         <div className="nextButtonBox">
           <button className="nextButton" onClick={handleNext}>
